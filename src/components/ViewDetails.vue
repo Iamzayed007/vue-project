@@ -34,7 +34,9 @@
 .detailsContent{
    border-radius: 30px;
   width: 100%;
-  padding: 20px 10px ;
+ padding: 40px 15px;
+ margin-bottom: 50px;
+ margin-top: 20px;
 
 }
 </style>

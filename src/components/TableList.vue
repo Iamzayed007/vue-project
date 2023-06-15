@@ -1,10 +1,10 @@
 <template>
     <tbody v-for="(d,index) in dataPaginated" :key="d.id"> 
   <tr  class="border border-dark">
-      <th scope="row" class="border border-dark">{{index+1}}</th>
-      <td class="border border-dark">{{d.title}}</td>
-      <td class="border border-dark">{{d.rating}}</td>
-      <td class="border border-dark">{{d.price}}</td>
+      <td class="border border-dark  ">{{index+1}}</td>
+      <td class="border border-dark ">{{d.title}}</td>
+      <td class="border border-dark ">{{d.rating}}</td>
+      <td class="border border-dark ">{{d.price}}</td>
       <td v-if="selectedUserId != d.id" class="border border-dark buttonClass">
       <button   class="btn text-sm-center" @click="toggleDetails(d.id)">
         Show
@@ -16,8 +16,10 @@
       </button>
       </td>
     </tr>
- <tr  v-if="selectedUserId == d.id" class="detailsSection" >
+ <tr  v-if="selectedUserId == d.id" >
+ <td colspan="5">
    <ViewDetails :selectedUser="selectedUser" />
+ </td>
    </tr>
    </tbody>
     
@@ -33,14 +35,6 @@ const props = defineProps(
 const selectedUserId = ref(null);
 const selectedUser = ref(null);
 
-//   const emit = defineEmits(['update:handleShowDetails'])
-//     //  const isShowDetails = ref(props.isShowDetails)
-//  console.log("data",props.data);
-//   let handleShowButton = () => {
-//      console.log('click',props.isShowDetails);
-//       emit('update:handleShowDetails', !props.isShowDetails);
-//     };
-// provide('isShowDetails', props.isShowDetails);
 
 function toggleDetails(userId) {
   if (selectedUserId === userId) {
@@ -73,31 +67,28 @@ function hideDetails() {
 .buttonClass{
     display: flex;
     justify-content: center;
+    align-content: center;
     border: none !important ;
 }
 .buttonClass .btn{
     background-color: rgb(83, 157, 46);
     color: white;
-    padding: 3px 5px;
-    /* font-size: 1px; */
+    padding: 5px 12px;
+    font-size: 12px;
 }
 .closeButtonClass{
     display: flex;
     justify-content: center;
+     align-content: center;
     border: none !important ;
 }
 .closeButtonClass .btn{
-    background-color: rgb(217, 120, 24);
+    background-color: rgba(228, 118, 8, 0.897);
     color: white;
-    padding: 3px 5px;
-    /* font-size: 1px; */
+    padding: 5px 12px;
+    font-size: 12px;
 }
 .detailsSection{
-    display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 10px ;
   margin-bottom: 30px;
   margin-left: 50px;
 }

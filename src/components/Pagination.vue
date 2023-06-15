@@ -4,7 +4,7 @@
 
     <div v-for="index in count" :key="index">
 
-      <button @click="currentPage(index)" class="btn">{{ index }}</button>
+      <button @click="currentPage(index)" :class="[index == activePage ? 'btn btn-success':'btn']">{{ index }}</button>
 
     </div>
     
@@ -14,7 +14,7 @@
 <script setup>
 import { ref, toRef, defineProps } from "vue";
 
-defineProps({ count: Number });
+defineProps({ count: Number,activePage: Number });
 
 const emit = defineEmits(["current-page"]);
 

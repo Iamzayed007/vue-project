@@ -3,11 +3,11 @@
    <table class=" table table-light border border-dark">
   <thead>
     <tr>
-      <th scope="col" class="border border-dark">SI</th>
-      <th scope="col" class="border border-dark">Name</th>
-      <th scope="col" class="border border-dark">Rating</th>
-      <th scope="col" class="border border-dark">price</th>
-      <th scope="col" class="border border-dark">Action</th>
+      <th scope="col" class="border border-dark fw-bold">SI</th>
+      <th scope="col" class="border border-dark fw-bold">Name</th>
+      <th scope="col" class="border border-dark fw-bold">Rating</th>
+      <th scope="col" class="border border-dark fw-bold">Price</th>
+      <th scope="col" class="border border-dark fw-bold">Action</th>
     </tr>
   </thead>
 
@@ -18,7 +18,7 @@
 </table>
 <div  v-if="loading == false">
 
-  <Pagination :count="data.products.length / 5" @current-page="setCurrentPage" />
+  <Pagination :count="data.products.length / 5" @current-page="setCurrentPage" :activePage="currentPage" />
 </div>
 </template>
 
