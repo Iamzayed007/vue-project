@@ -4,7 +4,7 @@
 
     <div v-for="index in count" :key="index">
 
-      <button @click="currentPage(index)" :class="[index == activePage ? 'btn btn-success':'btn']">{{ index }}</button>
+      <button @click="currentPage(index)" :class="[index == activePage ? 'btn btn-success':'btn btn-outline-success','mx-1']">{{ index }}</button>
 
     </div>
     
