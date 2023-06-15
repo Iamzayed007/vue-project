@@ -4,7 +4,7 @@
 
     <div v-for="index in count" :key="index">
 
-      <button @click="currentPage(index)">{{ index }}</button>
+      <button @click="currentPage(index)" class="btn">{{ index }}</button>
 
     </div>
     
