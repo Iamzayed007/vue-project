@@ -33,6 +33,14 @@ const props = defineProps(
 const selectedUserId = ref(null);
 const selectedUser = ref(null);
 
+//   const emit = defineEmits(['update:handleShowDetails'])
+//     //  const isShowDetails = ref(props.isShowDetails)
+//  console.log("data",props.data);
+//   let handleShowButton = () => {
+//      console.log('click',props.isShowDetails);
+//       emit('update:handleShowDetails', !props.isShowDetails);
+//     };
+// provide('isShowDetails', props.isShowDetails);
 
 function toggleDetails(userId) {
   if (selectedUserId === userId) {

@@ -1,16 +1,5 @@
 <template>
-  <div class="d-flex justify-content-end mb-3 mt-5">
-  <div class="mx-3">
-  Price:
-  <button  v-if="(sortBy =='price' && sortDirection =='asc')"   @click="sortData('price', 'dsc')"> Descending</button>
-  <button v-else @click="sortData('price', 'asc')"> Ascending</button>
-  </div>
-  <div class="mx-3">
-  Rating: 
-  <button v-if="(sortBy =='rating' && sortDirection =='asc')"   @click="sortData('rating', 'dsc')"> Descending</button>
-  <button v-else  @click="sortData('rating', 'asc')"> Ascending</button>
-  </div>
-  </div>
+ <Filter :sortBy="sortBy" :sortDirection="sortDirection" :sortData="sortData"  />
    <table class=" table table-light border border-dark">
   <thead>
     <tr>
@@ -34,21 +23,26 @@
 </template>
 
 <script setup>
+ import { ref, reactive, onMounted ,computed} from 'vue'
 import TableList from './TableList.vue'
  import ViewDetails from './ViewDetails.vue'
  import Pagination from "./Pagination.vue";
- import { ref, reactive, onMounted ,computed} from 'vue'
+ import Filter from "./Filter.vue";
 import axios from 'axios';
 
 const data = ref([]);
 const loading = ref(true);
-
+//  const isShowDetails = ref(false)
+//  const currentPage = ref('')
 const currentPage = ref(1);
 const itemsPerPage = 5;
  const sortBy = ref('');
 const sortDirection = ref('');
 
-
+//  let handleShowDetails =(value)=>{
+//     isShowDetails.value= value
+//     console.log(value);
+//  }
 
 const setCurrentPage = (index) => {
   console.log("SetCurrentPage", index);
