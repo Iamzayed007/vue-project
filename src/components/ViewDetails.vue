@@ -5,7 +5,7 @@
      ViewDetails
      </p>
      
-     <div class="text-center p-0 m-0">
+     <div class="text-center p-0 m-0 mb-3">
      ………………………………………………
      </div>
      <div>
