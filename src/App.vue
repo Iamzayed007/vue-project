@@ -3,7 +3,7 @@ import Tables from './components/Tables.vue'
 </script>
 
 <template>
- <div>
+ <div class="container">
  <Tables/>
  </div>
 </template>
