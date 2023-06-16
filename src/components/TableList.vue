@@ -5,20 +5,20 @@
       <td class="border border-dark ">{{d.title}}</td>
       <td class="border border-dark ">{{d.rating}}</td>
       <td class="border border-dark ">{{d.price}}</td>
-      <td v-if="selectedUserId != d.id" class="border border-dark buttonClass">
+      <td v-if="selectedProductId != d.id" class="border border-dark buttonClass">
       <button   class="btn text-sm-center" @click="toggleDetails(d.id)">
         Show
       </button>
       </td>
-      <td v-if="selectedUserId == d.id" class="border border-dark closeButtonClass">
+      <td v-if="selectedProductId == d.id" class="border border-dark closeButtonClass">
       <button   class="btn text-sm-center" @click="hideDetails">
         Close
       </button>
       </td>
     </tr>
- <tr  v-if="selectedUserId == d.id" >
+ <tr  v-if="selectedProductId == d.id" >
  <td colspan="5">
-   <ViewDetails :selectedUser="selectedUser" />
+   <ViewDetails :selectedProduct="selectedProduct" />
  </td>
    </tr>
    </tbody>
@@ -32,15 +32,15 @@ import { ref, defineProps, defineEmits, provide } from 'vue';
 const props = defineProps(
     [  "data","dataPaginated"]
 )
-const selectedUserId = ref(null);
-const selectedUser = ref(null);
+const selectedProductId = ref(null);
+const selectedProduct = ref(null);
 
 
 function toggleDetails(userId) {
-  if (selectedUserId === userId) {
+  if (selectedProductId === userId) {
     hideDetails();
   } else {
-    selectedUserId.value = userId;
+    selectedProductId.value = userId;
     fetchUserDetails(userId);
   }
 }
@@ -48,17 +48,17 @@ function toggleDetails(userId) {
 const fetchUserDetails = async(userId)=> {
       try {
     const response = await axios.get(`https://dummyjson.com/products/${userId}`);
-    selectedUser.value  = response.data;
+    selectedProduct.value  = response.data;
    
-    console.log("selectedUser.value",selectedUser.value)
+    console.log("selectedProduct.value",selectedProduct.value)
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 }
 
 function hideDetails() {
-  selectedUserId.value = null;
-  selectedUser.value = null;
+  selectedProductId.value = null;
+  selectedProduct.value = null;
 }
 
 </script>

@@ -10,24 +10,24 @@
      </div>
      <div>
      <div>
-     Name : {{props.selectedUser?.title}}
+     Name : {{props.selectedProduct?.title}}
     </div>
      <div>
-     Price : {{props.selectedUser?.price}}
+     Price : {{props.selectedProduct?.price}}
     </div>
      <div>
-     Rating : {{props.selectedUser?.rating}}
+     Rating : {{props.selectedProduct?.rating}}
     </div>
      <div>
-     Description : {{props.selectedUser?.description}}
+     Description : {{props.selectedProduct?.description}}
     </div>
      </div>
      </div>
 </template>
 
 <script setup>
-   const props = defineProps(['selectedUser'])
-   console.log("selectedUser", props.selectedUser);
+   const props = defineProps(['selectedProduct'])
+   console.log("selectedProduct", props.selectedProduct);
 </script>
 
 <style scoped>

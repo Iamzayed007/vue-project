@@ -23,26 +23,22 @@
 </template>
 
 <script setup>
- import { ref, reactive, onMounted ,computed} from 'vue'
+ import { ref, onMounted ,computed} from 'vue'
 import TableList from './TableList.vue'
- import ViewDetails from './ViewDetails.vue'
+
  import Pagination from "./Pagination.vue";
  import Filter from "./Filter.vue";
 import axios from 'axios';
 
 const data = ref([]);
 const loading = ref(true);
-//  const isShowDetails = ref(false)
-//  const currentPage = ref('')
+
 const currentPage = ref(1);
 const itemsPerPage = 5;
  const sortBy = ref('');
 const sortDirection = ref('');
 
-//  let handleShowDetails =(value)=>{
-//     isShowDetails.value= value
-//     console.log(value);
-//  }
+
 
 const setCurrentPage = (index) => {
   console.log("SetCurrentPage", index);
@@ -67,39 +63,29 @@ const sortData =(by,direction)=>{
      sortBy.value = by;
   sortDirection.value = direction;
 }
- const dataPaginated = computed(() => {
-    if (!sortBy.value || !sortDirection.value) {
-  if (currentPage.value) {
-    console.log("cure",data.value);
-    return data.value.products?.slice(
-      (currentPage.value - 1) * 5,
-      currentPage.value * 5
-    );
+const dataPaginated = computed(() => {
+ 
+ const startIndex = (currentPage.value - 1) * itemsPerPage;
+const endIndex = startIndex + itemsPerPage;
+  if (sortBy.value || sortDirection.value) {
+const sortedProducts =  data.value.products?.sort((a, b) => {
+  const aValue = a[sortBy.value];
+  const bValue = b[sortBy.value];
+
+  if (aValue < bValue) {
+    return sortDirection.value === 'asc' ? -1 : 1;
   }
- console.log("cure m",data.value.products?.slice(0, 5));
-  return data.value.products?.slice(0, 5);
-    }
 
-    
-  const sortedUsers =  data.value.products?.sort((a, b) => {
-    const aValue = a[sortBy.value];
-    const bValue = b[sortBy.value];
+  if (aValue > bValue) {
+    return sortDirection.value === 'asc' ? 1 : -1;
+  }
 
-    if (aValue < bValue) {
-      return sortDirection.value === 'asc' ? -1 : 1;
-    }
+  return 0;
+})
 
-    if (aValue > bValue) {
-      return sortDirection.value === 'asc' ? 1 : -1;
-    }
 
-    return 0;
-  })
-
-   const startIndex = (currentPage.value - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-
-  return sortedUsers.slice(startIndex, endIndex);
+return sortedProducts.slice(startIndex, endIndex);}
+ return data.value.products?.slice(startIndex, endIndex);
 });
 </script>
 
